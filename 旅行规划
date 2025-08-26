@@ -1,0 +1,49 @@
+import requests
+from datetime import datetime, timedelta
+
+# 模拟数据（实际使用时替换为API调用）
+class TripPlanner:
+    def __init__(self):
+        self.today = datetime.now().strftime("%Y-%m-%d")
+        self.tomorrow = (datetime.now() + timedelta(days=1)).strftime("%Y-%m-%d")
+        
+        # 模拟高铁车次数据
+        self.high_speed_trains = [
+            {"车次": "G1953", "出发": "06:53", "到达": "12:11", "耗时": "5小时18分"},
+            {"车次": "G1861", "出发": "07:55", "到达": "13:20", "耗时": "5小时25分"},
+            {"车次": "G3135", "出发": "08:00", "到达": "13:30", "耗时": "5小时30分"}
+        ]
+        
+        # 模拟天气数据
+        self.nanjing_weather = {
+            "日期": self.tomorrow,
+            "温度": "12-20℃",
+            "天气": "多云转晴",
+            "建议": "薄外套+长裤，建议携带雨伞"
+        }
+
+    def get_travel_suggestions(self):
+        print(f"\n【太原→南京出差建议 {self.tomorrow}】")
+        
+        print("\n🚄 推荐高铁车次：")
+        for train in self.high_speed_trains:
+            print(f"{train['车次']} | {train['出发']} 太原南 → {train['到达']} 南京南 | 耗时 {train['耗时']}")
+        
+        print("\n⚠ 注意事项：")
+        print("- 建议提前1小时抵达太原南站")
+        print("- 证件随身携带方便安检")
+        print("- 建议今天完成购票（通过12306官方渠道）")
+        
+        print("\n👔 南京穿着建议：")
+        print(f"- 温度：{self.nanjing_weather['温度']}")
+        print(f"- 天气：{self.nanjing_weather['天气']}")
+        print(f"- 建议：{self.nanjing_weather['建议']}")
+
+# 使用示例
+if __name__ == "__main__":
+    planner = TripPlanner()
+    planner.get_travel_suggestions()
+    
+    print("\n🔍 如需实时数据请访问：")
+    print("- 12306官网（车次查询）")
+    print("- 中国天气网（实时天气）")
